@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from routers import reminders, expenses, savings, notes, study, work, goals, calendar, ai, analytics, auth
 from websockets_manager import manager
+import models
+from database import engine
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="MANITOR AI API", version="1.0.0")
 
