@@ -16,7 +16,7 @@ router = APIRouter(prefix="/api/v1/notes", tags=["Notes"])
 # Initialize Qdrant Client
 qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
 try:
-    qdrant = QdrantClient(url=qdrant_url)
+    qdrant = QdrantClient(url=qdrant_url, timeout=3.0)
     qdrant.recreate_collection(
         collection_name="notes",
         vectors_config=VectorParams(size=384, distance=Distance.COSINE),
